@@ -17,7 +17,6 @@
 import { ref } from "vue";
 import axios from "axios";
 const dataPokemon = ref([]);
-const { data } = await useFetch("https://pokeapi.co/api/v2/pokemon");
 async function getDataPokemon() {
   await axios
     .get("https://pokeapi.co/api/v2/pokemon")
@@ -46,7 +45,6 @@ async function getDataPokemon() {
     .catch(function (error) {
       console.log(error);
     });
-  //   console.log(dataPokemon.value);
 }
 (async () => {
   await getDataPokemon();

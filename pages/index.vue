@@ -4,7 +4,7 @@
       <div class="flex flex-wrap -mx-1 lg:-mx-4">
         <div
           class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3"
-          v-for="pokemon in dataPokemon"
+          v-for="pokemon in dataSorted"
         >
           <Card :pokemon="pokemon" />
         </div>
@@ -16,7 +16,15 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
+
 const dataPokemon = ref([]);
+
+const dataSorted = computed(() =>
+  dataPokemon.value.sort((a, b) => {
+    return a.id > b.id ? 1 : -1;
+  })
+);
+
 async function getDataPokemon() {
   await axios
     .get("https://pokeapi.co/api/v2/pokemon")
@@ -37,9 +45,6 @@ async function getDataPokemon() {
             }),
         ]);
         dataPokemon.value.push(resPokemon);
-      });
-      dataPokemon.value.sort((a, b) => {
-        return a.id > b.id ? 1 : -1;
       });
     })
     .catch(function (error) {

@@ -5,10 +5,10 @@
     >
       <div
         class="rounded border-gray-300 dark:border-gray-700 border-dashed border-2 h-24"
-        v-for="pokemon in resPokemon"
+        v-for="pokemon in data.results"
       >
-        <HelloWorld />
-        <pre>{{ pokemon }}</pre>
+        {{ pokemon.name }}
+        {{ pokemon.url }}
       </div>
     </div>
   </div>
@@ -16,12 +16,7 @@
 
 <script setup>
 import axios from "axios";
-
-const resPokemon = async () => {
-  return await axios
-    .get(`https://pokeapi.co/api/v2/pokemon`)
-    .then((response) => response.results)
-    .catch((error) => alert(error.message));
-};
-console.log(resPokemon());
+const dataPokemon = ref([]);
+const { data } = await useFetch("https://pokeapi.co/api/v2/pokemon");
+console.log(data.results);
 </script>

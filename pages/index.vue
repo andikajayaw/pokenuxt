@@ -24,6 +24,9 @@
                   {{ pokemon.name }}
                 </a>
               </h1>
+              <h1 class="text-lg">
+                {{ pokemon.id }}
+              </h1>
               <ul>
                 <li v-for="type in pokemon.types">{{ type.type.name }}</li>
               </ul>
@@ -61,7 +64,6 @@ async function getDataPokemon() {
               console.log(error);
             }),
         ]);
-        console.log(resPokemon);
         dataPokemon.value.push(resPokemon);
       });
       dataPokemon.value.sort((a, b) => {

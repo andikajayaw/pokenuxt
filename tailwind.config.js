@@ -38,7 +38,10 @@ module.exports = {
         },
         borderRadius: {
           '4xl': '2rem',
-        }
+        },
+        backgroundImage: {
+          'pokeball-bg-card': "url('./assets/images/pokeball-bg-2.png')",
+        },
       }
     }
   },

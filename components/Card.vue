@@ -1,8 +1,10 @@
 <template>
   <div
-    class="w-full bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
+    class="w-full rounded-lg shadow-md bg-gradient-to-b from-violet-500 to-fuchsia-500 dark:border-gray-700"
   >
-    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
+    <div
+      class="rounded-lg grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4"
+    >
       <div>
         <div class="p-5 m-5">
           <a href="#">
@@ -34,13 +36,13 @@
         </div>
       </div>
       <div>
-        <a href="#">
+        <div style="background-image: url(~assets/images/pokeball-bg-2.png)">
           <img
-            class="w-64 p-8 items-center justify-center rounded-t-lg hover:scale-125 ease-in duration-300"
+            class="w-64 p-8 items-center justify-center rounded-t-lg hover:scale-125 ease-in duration-150"
             :src="pokemon.sprites.other['official-artwork'].front_default"
             alt="product image"
           />
-        </a>
+        </div>
       </div>
     </div>
   </div>
@@ -48,4 +50,32 @@
 
 <script setup>
 const prop = defineProps(["pokemon"]);
+
+async function bgColor(val) {
+  //   :class="bgColor(pokemon.types[0])"
+
+  console.log(val.type.name);
+  let bgColor = "bg-gray-800";
+  switch (val.type.name) {
+    case "grass":
+      bgColor = "bg-green-800";
+      break;
+    case "fire":
+      bgColor = "bg-rose-800";
+      break;
+    case "water":
+      bgColor = "bg-blue-800";
+      break;
+    case "normal":
+      bgColor = "bg-gray-800";
+      break;
+    case "bug":
+      bgColor = "bg-lime-800";
+      break;
+    default:
+      break;
+  }
+  console.log(bgColor);
+  return bgColor;
+}
 </script>

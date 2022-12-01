@@ -37,7 +37,6 @@ async function getDataPokemon() {
             .get(x.url)
             .then(function (response) {
               // handle success
-              console.log(response.data.id);
               return response.data;
             })
             .catch(function (error) {
